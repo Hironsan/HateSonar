@@ -6,33 +6,33 @@ import sys
 
 from setuptools import find_packages, setup
 
+from m2r import convert
+
 # Package meta-data.
 NAME = 'hatesonar'
-DESCRIPTION = 'Hate Speech Detection Library'
+DESCRIPTION = 'Hate Speech Detection Library for Python'
 URL = 'https://github.com/Hironsan/HateSonar'
 EMAIL = 'hiroki.nakayama.py@gmail.com'
 AUTHOR = 'Hironsan'
 LICENSE = 'MIT'
 
 here = os.path.abspath(os.path.dirname(__file__))
-with io.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = '\n' + f.read()
+with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = convert(f.read())
 
-about = {}
-with open(os.path.join(here, NAME, '__version__.py')) as f:
-    exec(f.read(), about)
 
 if sys.argv[-1] == 'publish':
-    os.system('python setup.py sdist bdist_wheel upload')
+    os.system('python setup.py sdist bdist_wheel')
+    os.system('twine upload dist/*')
     sys.exit()
 
 required = [
-    
+    'numpy>=1.14.0', 'pandas>=0.22.0', 'scikit-learn>=0.19.1', 'scipy>=1.0.0'
 ]
 
 setup(
     name=NAME,
-    version=about['__version__'],
+    version='0.0.1',
     description=DESCRIPTION,
     long_description=long_description,
     author=AUTHOR,

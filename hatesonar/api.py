@@ -15,7 +15,7 @@ from sklearn.externals import joblib
 class Sonar(object):
 
     def __init__(self):
-        BASE_DIR = os.path.join(os.path.dirname(__file__), '../data/model')
+        BASE_DIR = os.path.join(os.path.dirname(__file__), './data')
         model_file = os.path.join(BASE_DIR, 'model.pkl')
         preprocessor_file = os.path.join(BASE_DIR, 'preprocess.pkl')
         self.estimator = joblib.load(model_file)

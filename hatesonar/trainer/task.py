@@ -45,10 +45,11 @@ def main(args):
 
 if __name__ == '__main__':
     DATA_DIR = os.path.join(os.path.dirname(__file__), '../../data')
+    SAVE_DIR = os.path.join(os.path.dirname(__file__), '../data')
     parser = argparse.ArgumentParser(description='Training a classifier')
     parser.add_argument('--dataset', default=os.path.join(DATA_DIR, 'labeled_data.csv'), help='dataset')
-    parser.add_argument('--model_file', default=os.path.join(DATA_DIR, 'model/model.pkl'), help='model file')
-    parser.add_argument('--preprocessor', default=os.path.join(DATA_DIR, 'model/preprocess.pkl'), help='preprocessor')
+    parser.add_argument('--model_file', default=os.path.join(SAVE_DIR, 'data/model.pkl'), help='model file')
+    parser.add_argument('--preprocessor', default=os.path.join(SAVE_DIR, 'data/preprocess.pkl'), help='preprocessor')
     parser.add_argument('--test_size', type=float, default=0.3, help='test data size')
     args = parser.parse_args()
     main(args)
