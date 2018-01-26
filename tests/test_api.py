@@ -8,7 +8,7 @@ class TestAPI(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.text = 'this is test text.'
+        cls.text = 'At least I\'m not a nigger'
 
     def test_ping(self):
         sonar = Sonar()

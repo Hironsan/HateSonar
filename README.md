@@ -10,18 +10,21 @@ https://www.pakutaso.com/20171036300post-13829.html
 Behold, the power of HateSonar:
 
 ```python
->>> import hatesonar
->>> sonar = hatesonar.Sonar()
->>> sonar.ping(text='How hot will it be today?')
+>>> from hatesonar import Sonar
+>>> sonar = Sonar()
+>>> sonar.ping(text="At least I'm not a nigger")
 {
-  "text" : "How hot will it be today?",
-  "top_class" : "temperature",
+  "text" : "At least I'm not a nigger",
+  "top_class" : "hate_speech",
   "classes" : [ {
-    "class_name" : "temperature",
-    "confidence" : 0.9998201258549781
+    "class_name" : "hate_speech",
+    "confidence" : 0.6001793646345871
   }, {
-    "class_name" : "conditions",
-    "confidence" : 1.7987414502176904E-4
+    "class_name" : "offensive_language",
+    "confidence" : 0.399548534507691
+  }, {
+    "class_name": "neither",
+    "confidence": 0.0002721008577219325
   } ]
 }
 ```
@@ -40,13 +43,13 @@ To install HateSonar, simply use `pip`:
 $ pip install hatesonar
 ```
 
+<!--
 ## How to Contribute
 1. Check for open issues or open a fresh issue to start a discussion around a feature idea or a bug. There is a Contributor Friendly tag for issues that should be ideal for people who are not very familiar with the codebase yet.
 2. Fork the repository on GitHub to start making your changes to the master branch (or branch off of it).
 3. Write a test which shows that the bug was fixed or that the feature works as expected.
 4. Send a pull request and bug the maintainer until it gets merged and published. :) Make sure to add yourself to AUTHORS.
-
-<!--
-## Reference
-Repository for Thomas Davidson, Dana Warmsley, Michael Macy, and Ingmar Weber. 2017. "Automated Hate Speech Detection and the Problem of Offensive Language." ICWSM. 
 -->
+
+## Reference
+Thomas Davidson, Dana Warmsley, Michael Macy, and Ingmar Weber. 2017. "Automated Hate Speech Detection and the Problem of Offensive Language." ICWSM. 
