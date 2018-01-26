@@ -1,4 +1,5 @@
 import unittest
+from pprint import pprint
 
 from hatesonar.api import Sonar
 
@@ -12,6 +13,7 @@ class TestAPI(unittest.TestCase):
     def test_ping(self):
         sonar = Sonar()
         res = sonar.ping(self.text)
+        pprint(res)
         self.assertIn('text', res)
         self.assertIn('top_class', res)
         self.assertIn('classes', res)
