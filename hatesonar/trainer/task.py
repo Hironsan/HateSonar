@@ -17,7 +17,6 @@ from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 
 
-
 def main(args):
     print('Loading dataset...')
     df = pd.read_csv(args.dataset)
