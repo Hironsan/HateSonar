@@ -4,6 +4,7 @@ certifi==2018.1.18
 chardet==3.0.4
 cycler==0.10.0
 decorator==4.2.1
+docutils==0.14
 entrypoints==0.2.3
 html5lib==1.0.1
 idna==2.6
@@ -18,6 +19,7 @@ jupyter==1.0.0
 jupyter-client==5.2.2
 jupyter-console==5.2.0
 jupyter-core==4.4.0
+m2r==0.1.12
 MarkupSafe==1.0
 matplotlib==2.1.2
 mistune==0.8.3
@@ -31,6 +33,7 @@ pandocfilters==1.4.2
 parso==0.1.1
 pexpect==4.3.1
 pickleshare==0.7.4
+pkginfo==1.4.1
 prompt-toolkit==1.0.15
 ptyprocess==0.5.2
 Pygments==2.2.0
@@ -42,6 +45,7 @@ pyzmq==16.0.4
 qtconsole==4.3.1
 repoze.lru==0.7
 requests==2.18.4
+requests-toolbelt==0.8.0
 scikit-learn==0.19.1
 scipy==1.0.0
 seaborn==0.8.1
@@ -52,7 +56,9 @@ terminado==0.8.1
 testpath==0.3.1
 textstat==0.4.1
 tornado==4.5.3
+tqdm==4.19.5
 traitlets==4.3.2
+twine==1.9.1
 urllib3==1.22
 vaderSentiment==2.5
 wcwidth==0.1.7
