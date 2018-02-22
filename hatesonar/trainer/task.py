@@ -32,8 +32,8 @@ def main(args):
     clf.fit(x_train, y_train)
 
     print('Saving...')
-    joblib.dump(clf, args.model_file)
-    joblib.dump(vectorizer, args.preprocessor)
+    joblib.dump(clf, args.model_file, protocol=2)
+    joblib.dump(vectorizer, args.preprocessor, protocol=2)
 
     if args.test_size > 0.0:
         print('Predicting...')
@@ -48,8 +48,8 @@ if __name__ == '__main__':
     SAVE_DIR = os.path.join(os.path.dirname(__file__), '../data')
     parser = argparse.ArgumentParser(description='Training a classifier')
     parser.add_argument('--dataset', default=os.path.join(DATA_DIR, 'labeled_data.csv'), help='dataset')
-    parser.add_argument('--model_file', default=os.path.join(SAVE_DIR, 'data/model.pkl'), help='model file')
-    parser.add_argument('--preprocessor', default=os.path.join(SAVE_DIR, 'data/preprocess.pkl'), help='preprocessor')
+    parser.add_argument('--model_file', default=os.path.join(SAVE_DIR, 'model.pkl'), help='model file')
+    parser.add_argument('--preprocessor', default=os.path.join(SAVE_DIR, 'preprocess.pkl'), help='preprocessor')
     parser.add_argument('--test_size', type=float, default=0.3, help='test data size')
     args = parser.parse_args()
     main(args)
