@@ -6,7 +6,7 @@ import sys
 
 from setuptools import find_packages, setup
 
-from m2r import convert
+# from m2r import convert
 
 # Package meta-data.
 NAME = 'hatesonar'
@@ -18,7 +18,7 @@ LICENSE = 'MIT'
 
 here = os.path.abspath(os.path.dirname(__file__))
 with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = convert(f.read())
+    long_description = f.read()
 
 
 if sys.argv[-1] == 'publish':
@@ -32,7 +32,7 @@ required = [
 
 setup(
     name=NAME,
-    version='0.0.2',
+    version='0.0.4',
     description=DESCRIPTION,
     long_description=long_description,
     author=AUTHOR,
