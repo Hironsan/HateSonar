@@ -1,5 +1,6 @@
 click==6.7
 Flask==1.0.2
+gunicorn==19.9.0
 hatesonar==0.0.4
 itsdangerous==0.24
 Jinja2==2.10
