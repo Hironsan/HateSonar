@@ -117,7 +117,7 @@
       el: '#root',
       delimiters: ['[[', ']]'],
       data: {
-        query: '',
+        query: "At least I'm not a nigger",
         result: {
           "text": "At least I'm not a nigger",
           "top_class": "hate_speech",
@@ -151,7 +151,6 @@
 
       watch: {
         query: function () {
-          console.log(this.query);
           if (this.query == '') {
             this.result = '';
             return;
@@ -160,7 +159,6 @@
             'text': this.query
           };
           axios.post(`${base_url}api/analyze`, payload).then(response => {
-            console.log(response.data);
             this.result = response.data;
           })
         }
