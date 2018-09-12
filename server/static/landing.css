@@ -19,3 +19,11 @@ html,body {
   padding: 3rem 0;
   line-height: 1.5;
 }
+
+.card-radius {
+  border-radius: 6px;
+}
+
+.card-header-radius {
+  border-radius: 6px 6px 0 0;
+}
