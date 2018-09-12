@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>anaGo Demo</title>
-  <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+  <title>HateSonar Demo</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -15,6 +15,9 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='landing.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body>
@@ -102,7 +105,8 @@
               <h1 class="title is-5 has-text-black">
                 <i class="fas fa-code"></i> JSON
               </h1>
-              <pre class="box">[[ prettyPrint ]]</pre>
+              <pre class="card-radius code-block" v-highlightjs="prettyPrint"><code></code></pre>
+              <!--<pre class="card-radius code-block"><code>[[ prettyPrint ]]</code></pre>-->
             </div>
           </div>
         </div>
@@ -113,14 +117,39 @@
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
     var base_url = window.location.href;
+
+    Vue.directive('highlightjs', {
+      deep: true,
+      bind: function (el, binding) {
+        // on first bind, highlight all targets
+        let targets = el.querySelectorAll('code')
+        targets.forEach((target) => {
+          // if a value is directly assigned to the directive, use this
+          // instead of the element content.
+          if (binding.value) {
+            target.textContent = binding.value
+          }
+          hljs.highlightBlock(target)
+        })
+      },
+      componentUpdated: function (el, binding) {
+        // after an update, re-fill the content and then highlight
+        let targets = el.querySelectorAll('code')
+        targets.forEach((target) => {
+          if (binding.value) {
+            target.textContent = binding.value
+            hljs.highlightBlock(target)
+          }
+        })
+      }
+    })
+
     var vm = new Vue({
       el: '#root',
       delimiters: ['[[', ']]'],
       data: {
         query: "At least I'm not a nigger",
         result: {
-          "text": "At least I'm not a nigger",
-          "top_class": "hate_speech",
           "classes": [{
             "class_name": "hate_speech",
             "confidence": 0.6001793646345871
@@ -130,7 +159,9 @@
           }, {
             "class_name": "neither",
             "confidence": 0.0002721008577219325
-          }]
+          }],
+          "text": "At least I'm not a nigger",
+          "top_class": "hate_speech"
         },
       },
       computed: {

@@ -27,3 +27,7 @@ html,body {
 .card-header-radius {
   border-radius: 6px 6px 0 0;
 }
+
+.code-block {
+  padding: 0;
+}
