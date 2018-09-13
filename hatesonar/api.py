@@ -39,3 +39,20 @@ class Sonar(object):
         }
 
         return res
+
+    def get_weights(self, text):
+
+        def get_class_idx():
+            res = self.ping(text)
+            for i, class_ in enumerate(res['classes']):
+                if class_['class_name'] == res['top_class']:
+                    return i
+
+        class_idx = get_class_idx()
+        features = self.preprocessor.get_feature_names()
+        weights = self.estimator.coef_[class_idx]
+        word2weight = {f: w for f, w in zip(features, weights)}
+        tokenize = self.preprocessor.build_analyzer()
+        words = tokenize(text)
+
+        return {w: word2weight.get(w, 0) for w in words}

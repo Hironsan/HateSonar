@@ -25,3 +25,9 @@ class TestAPI(unittest.TestCase):
             self.assertIn('confidence', d)
             self.assertIsInstance(d['class_name'], str)
             self.assertIsInstance(d['confidence'], float)
+
+    def test_get_weight(self):
+        sonar = Sonar()
+        weights = sonar.get_weights(self.text)
+        from pprint import pprint
+        pprint(weights)
