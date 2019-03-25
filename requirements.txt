@@ -5,7 +5,7 @@ hatesonar==0.0.4
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
-numpy==1.14.1
+numpy==1.16.2
 pandas==0.22.0
 python-dateutil==2.6.1
 pytz==2018.3
