@@ -25,12 +25,12 @@ if sys.argv[-1] == 'publish':
     sys.exit()
 
 required = [
-    'numpy>=1.14.0', 'pandas>=0.22.0', 'scikit-learn>=0.19.1', 'scipy>=1.0.0'
+    'numpy>=1.14.0', 'pandas>=0.22.0', 'scikit-learn>=0.19.1', 'scipy>=1.0.0', 'joblib>=0.16.0'
 ]
 
 setup(
     name=NAME,
-    version='0.0.5',
+    version='0.0.6',
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',
