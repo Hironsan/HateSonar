@@ -8,16 +8,16 @@ from __future__ import print_function
 
 import os
 
+import joblib
 import numpy as np
-from sklearn.externals import joblib
 
 
 class Sonar(object):
 
     def __init__(self):
         BASE_DIR = os.path.join(os.path.dirname(__file__), './data')
-        model_file = os.path.join(BASE_DIR, 'model.pkl')
-        preprocessor_file = os.path.join(BASE_DIR, 'preprocess.pkl')
+        model_file = os.path.join(BASE_DIR, 'model.joblib')
+        preprocessor_file = os.path.join(BASE_DIR, 'preprocess.joblib')
         self.estimator = joblib.load(model_file)
         self.preprocessor = joblib.load(preprocessor_file)
 
