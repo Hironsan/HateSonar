@@ -6,8 +6,6 @@ import sys
 
 from setuptools import find_packages, setup
 
-# from m2r import convert
-
 # Package meta-data.
 NAME = 'hatesonar'
 DESCRIPTION = 'Hate Speech Detection Library for Python'
@@ -35,6 +33,7 @@ setup(
     version='0.0.5',
     description=DESCRIPTION,
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,
