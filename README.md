@@ -31,6 +31,8 @@ Behold, the power of HateSonar:
 
 HateSonar allows you to detect hate speech and offensive language in text, without the need for training. There's no need to train the model. You have only to fed text into HateSonar. It detects hate speech with the confidence score.
 
+[BERT based model](https://colab.research.google.com/drive/1K4bH_vot_W9XXjlw9O-2ucROW9N4ZoDN?usp=sharing)
+
 ## Feature Support
 * Hate speech and offensive language detection
 
