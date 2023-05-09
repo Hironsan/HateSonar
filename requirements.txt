@@ -13,4 +13,4 @@ scikit-learn==0.24.2
 scipy==1.8.0
 six==1.16.0
 threadpoolctl==2.1.0
-Werkzeug==2.0.3
+Werkzeug==2.3.4
