@@ -4,7 +4,7 @@ gunicorn==20.1.0
 itsdangerous==1.1.0
 Jinja2==3.0.3
 joblib==1.0.1
-MarkupSafe==1.1.1
+MarkupSafe==3.0.3
 numpy==1.22.2
 pandas==1.2.4
 python-dateutil==2.8.1
