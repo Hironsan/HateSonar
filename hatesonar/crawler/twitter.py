@@ -20,7 +20,7 @@ def load_keys():
     return consumer_key, consumer_secret, access_token, access_token_secret
 
 
-class TwitterAPI(object):
+class TwitterAPI:
 
     def __init__(self, consumer_key, consumer_secret, access_token, access_token_secret):
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)

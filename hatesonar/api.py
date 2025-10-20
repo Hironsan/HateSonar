@@ -2,17 +2,13 @@
 Model API.
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 import os
 
 import joblib
 import numpy as np
 
 
-class Sonar(object):
+class Sonar:
 
     def __init__(self):
         BASE_DIR = os.path.join(os.path.dirname(__file__), './data')
@@ -49,7 +45,7 @@ class Sonar(object):
                     return i
 
         class_idx = get_class_idx()
-        features = self.preprocessor.get_feature_names()
+        features = self.preprocessor.get_feature_names_out()
         weights = self.estimator.coef_[class_idx]
         word2weight = {f: w for f, w in zip(features, weights)}
         tokenize = self.preprocessor.build_analyzer()
