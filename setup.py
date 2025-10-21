@@ -25,12 +25,12 @@ if sys.argv[-1] == 'publish':
     sys.exit()
 
 required = [
-    'numpy>=1.14.0', 'pandas>=0.22.0', 'scikit-learn>=0.19.1', 'scipy>=1.0.0', 'joblib>=0.16.0'
+    'numpy>=1.19.0', 'pandas>=1.1.0', 'scikit-learn>=0.24.0', 'scipy>=1.5.0', 'joblib>=1.0.0'
 ]
 
 setup(
     name=NAME,
-    version='0.0.7',
+    version='0.0.8',
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -41,14 +41,16 @@ setup(
     install_requires=required,
     include_package_data=True,
     license=LICENSE,
+    python_requires='>=3.9',
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: Implementation :: CPython',
-        'Programming Language :: Python :: Implementation :: PyPy'
     ],
 )

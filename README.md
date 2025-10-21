@@ -36,7 +36,7 @@ HateSonar allows you to detect hate speech and offensive language in text, witho
 ## Feature Support
 * Hate speech and offensive language detection
 
-HateSonar officially supports Python 2.7 & 3.4–3.6
+HateSonar officially supports Python 3.9+
 
 ## Installation
 To install HateSonar, simply use `pip`:

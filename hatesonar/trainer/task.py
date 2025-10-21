@@ -2,15 +2,11 @@
 Baseline model.
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 import argparse
 import os
 
+import joblib
 import pandas as pd
-from sklearn.externals import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
@@ -28,7 +24,7 @@ def main(args):
     x_train = vectorizer.fit_transform(x_train)
 
     print('Fitting...')
-    clf = LogisticRegression(penalty='l1')
+    clf = LogisticRegression(penalty='l1', solver='saga', max_iter=1000)
     clf.fit(x_train, y_train)
 
     print('Saving...')
@@ -48,8 +44,8 @@ if __name__ == '__main__':
     SAVE_DIR = os.path.join(os.path.dirname(__file__), '../data')
     parser = argparse.ArgumentParser(description='Training a classifier')
     parser.add_argument('--dataset', default=os.path.join(DATA_DIR, 'labeled_data.csv'), help='dataset')
-    parser.add_argument('--model_file', default=os.path.join(SAVE_DIR, 'model.pkl'), help='model file')
-    parser.add_argument('--preprocessor', default=os.path.join(SAVE_DIR, 'preprocess.pkl'), help='preprocessor')
+    parser.add_argument('--model_file', default=os.path.join(SAVE_DIR, 'model.joblib'), help='model file')
+    parser.add_argument('--preprocessor', default=os.path.join(SAVE_DIR, 'preprocess.joblib'), help='preprocessor')
     parser.add_argument('--test_size', type=float, default=0.3, help='test data size')
     args = parser.parse_args()
     main(args)
