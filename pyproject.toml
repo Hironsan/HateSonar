@@ -1,0 +1,61 @@
+[project]
+name = "hatesonar"
+version = "0.1.0"
+description = "Hate Speech Detection Library for Python"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Hironsan", email = "hiroki.nakayama.py@gmail.com" }]
+dependencies = [
+    "numpy>=2.2.6",
+    "onnxruntime>=1.23.1",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.7.2",
+    "skl2onnx>=1.19.1",
+]
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.406",
+    "ruff>=0.14.1",
+    "taskipy>=1.14.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+exclude = [
+    ".github",
+    "data",
+    "notebooks",
+    "tests",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+exclude = ["tests"]
+
+[tool.ruff.lint]
+select = [
+    "ALL"
+]
+ignore = [
+    "T201",
+    "PGH003",
+    "D104",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

@@ -1,54 +1,55 @@
-"""
-Model API.
-"""
+"""Model API."""
 
-import os
+from pathlib import Path
+from typing import Any, TypedDict
 
-import joblib
 import numpy as np
+import onnxruntime as ort
+
+DEFAULT_MODEL_FILE = Path(__file__).parent / "model" / "model.onnx"
+
+
+class ClassConfidence(TypedDict):
+    """Class confidence dictionary."""
+
+    class_name: str
+    confidence: float
+
+
+class PredictionResult(TypedDict):
+    """Prediction result dictionary."""
+
+    text: str
+    top_class: str
+    classes: list[ClassConfidence]
 
 
 class Sonar:
+    """HateSonar API class."""
 
-    def __init__(self):
-        BASE_DIR = os.path.join(os.path.dirname(__file__), './data')
-        model_file = os.path.join(BASE_DIR, 'model.joblib')
-        preprocessor_file = os.path.join(BASE_DIR, 'preprocess.joblib')
-        self.estimator = joblib.load(model_file)
-        self.preprocessor = joblib.load(preprocessor_file)
+    def __init__(self, model_file: Path = DEFAULT_MODEL_FILE) -> None:
+        """Initialize Sonar with ONNX model.
 
-    def ping(self, text):
-        assert isinstance(text, str)
+        Args:
+            model_file (Path): Path to the ONNX model file.
+        """
+        self.sess = ort.InferenceSession(model_file, providers=["CPUExecutionProvider"])
+        self.mapping = {0: "hate_speech", 1: "offensive_language", 2: "neither"}
 
-        vector = self.preprocessor.transform([text])
-        proba = self.estimator.predict_proba(vector)[0]
-        mapping = {0: 'hate_speech', 1: 'offensive_language', 2: 'neither'}
+    def ping(self, text: str) -> PredictionResult:
+        """Predict hate speech from text.
 
-        res = {
-            'text': text,
-            'top_class': mapping[np.argmax(proba)],
-            'classes': [
-                {'class_name': mapping[k],
-                 'confidence': proba[k]}
-                for k in sorted(mapping)
-            ]
+        Args:
+            text (str): Input text.
+
+        Returns:
+            PredictionResult: Prediction results.
+        """
+        test_inputs = np.array([text], dtype=object)
+        outputs: list[Any] = self.sess.run(None, {"text": test_inputs})  # type: ignore
+        labels, probs = outputs
+        return {
+            "text": text,
+            "top_class": self.mapping[labels[0]],
+            "classes": [{"class_name": self.mapping[k], "confidence": probs[0][k]} for k in sorted(self.mapping)],
         }
-
-        return res
-
-    def get_weights(self, text):
-
-        def get_class_idx():
-            res = self.ping(text)
-            for i, class_ in enumerate(res['classes']):
-                if class_['class_name'] == res['top_class']:
-                    return i
-
-        class_idx = get_class_idx()
-        features = self.preprocessor.get_feature_names_out()
-        weights = self.estimator.coef_[class_idx]
-        word2weight = {f: w for f, w in zip(features, weights)}
-        tokenize = self.preprocessor.build_analyzer()
-        words = tokenize(text)
-
-        return {w: word2weight.get(w, 0) for w in words}
